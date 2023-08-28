@@ -1,8 +1,8 @@
 {
   "name": "@pyramidmc/tree",
-  "version": "1.0.0-test2",
+  "version": "1.0.0-test3",
   "main": "dist/index.js",
-  "typings": "dist/types.d.ts",
+  "typings": "dist/index.d.ts",
   "repository": "https://github.com/pyramidmc/tree.git",
   "author": "SrIzan10 <66965250+SrIzan10@users.noreply.github.com>",
   "license": "MIT",
@@ -12,7 +12,7 @@
     "generate": "drizzle-kit generate:sqlite --schema=./src/schema.ts"
   },
   "dependencies": {
-    "@pyramidmc/tree": "1.0.0-test1",
+    "@pyramidmc/tree": "^1.0.0-test2",
     "better-sqlite3": "^8.5.2",
     "drizzle-orm": "^0.28.5",
     "express": "^4.18.2",
