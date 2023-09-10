@@ -1,6 +1,6 @@
 {
   "name": "@pyramidmc/tree",
-  "version": "1.0.2-testing1",
+  "version": "1.0.3",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "repository": "https://github.com/pyramidmc/tree.git",
