@@ -1,0 +1,13 @@
+{
+  "version": "5",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1693166828190,
+      "tag": "0000_thankful_loki",
+      "breakpoints": true
+    }
+  ]
+}
