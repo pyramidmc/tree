@@ -24,6 +24,7 @@ export default class YggdrasilServer {
         fs.mkdirSync(`${os.homedir()}/.pyramidmc/database/`, { recursive: true });
         const sqlite = new Database(`${os.homedir()}/.pyramidmc/database/tree.db`);
         const db: BetterSQLite3Database = drizzle(sqlite);
+        migrate(db, { migrationsFolder: './tree/drizzle' });
 
         app.get('/', (req, res) => {
             res.send('Hello World!\nThis is the PyramidMC Yggdrasil server, codenamed "Tree".\nThe code can be hackable at https://github.com/pyramidmc/tree')
