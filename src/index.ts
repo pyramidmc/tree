@@ -13,7 +13,7 @@ import type {
     RefreshResponse,
     UserAccountRequest
 } from "./types";
-import {eq, sql} from "drizzle-orm";
+import {eq, getTableColumns, sql} from "drizzle-orm";
 import * as randomstring from "randomstring";
 
 export default class YggdrasilServer {
@@ -24,7 +24,7 @@ export default class YggdrasilServer {
         fs.mkdirSync(`${os.homedir()}/.pyramidmc/database/`, { recursive: true });
         const sqlite = new Database(`${os.homedir()}/.pyramidmc/database/tree.db`);
         const db: BetterSQLite3Database = drizzle(sqlite);
-        migrate(db, { migrationsFolder: './tree/drizzle' });
+        migrate(db, { migrationsFolder: 'drizzle' });
 
         app.get('/', (req, res) => {
             res.send('Hello World!\nThis is the PyramidMC Yggdrasil server, codenamed "Tree".\nThe code can be hackable at https://github.com/pyramidmc/tree')
@@ -37,6 +37,15 @@ export default class YggdrasilServer {
                 .execute()
                 .then(() => res.send({ successful: true }))
                 .catch((e) => res.send({ successful: false, message: e.toString() }))
+        })
+        app.post('/api/getUsers', async (req, res) => {
+            const { username } = getTableColumns(users);
+            const dbResponse = await db
+                .select({ username })
+                .from(users)
+                .execute()
+            
+            res.send(dbResponse)
         })
 
         // from here begins the yggdrasil server source code!
