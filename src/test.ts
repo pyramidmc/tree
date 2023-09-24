@@ -1,2 +1,2 @@
 import YggdrasilServer from "./index.js";
-new YggdrasilServer()
+new YggdrasilServer('drizzle')
