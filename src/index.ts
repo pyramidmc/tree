@@ -17,14 +17,14 @@ import {eq, getTableColumns, sql} from "drizzle-orm";
 import * as randomstring from "randomstring";
 
 export default class YggdrasilServer {
-    constructor(port?: number) {
+    constructor(migrationsFolder: string, port?: number) {
         const app = express();
         app.use(express.json())
 
         fs.mkdirSync(`${os.homedir()}/.pyramidmc/database/`, { recursive: true });
         const sqlite = new Database(`${os.homedir()}/.pyramidmc/database/tree.db`);
         const db: BetterSQLite3Database = drizzle(sqlite);
-        migrate(db, { migrationsFolder: 'drizzle' });
+        migrate(db, { migrationsFolder });
 
         app.get('/', (req, res) => {
             res.send('Hello World!\nThis is the PyramidMC Yggdrasil server, codenamed "Tree".\nThe code can be hackable at https://github.com/pyramidmc/tree')
