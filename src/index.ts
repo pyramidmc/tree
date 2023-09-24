@@ -38,7 +38,7 @@ export default class YggdrasilServer {
                 .then(() => res.send({ successful: true }))
                 .catch((e) => res.send({ successful: false, message: e.toString() }))
         })
-        app.post('/api/getUsers', async (req, res) => {
+        app.get('/api/getUsers', async (req, res) => {
             const { username } = getTableColumns(users);
             const dbResponse = await db
                 .select({ username })
