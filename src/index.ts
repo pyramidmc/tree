@@ -39,9 +39,9 @@ export default class YggdrasilServer {
                 .catch((e) => res.send({ successful: false, message: e.toString() }))
         })
         app.get('/api/getUsers', async (req, res) => {
-            const { username } = getTableColumns(users);
+            const { username, email, password } = getTableColumns(users);
             const dbResponse = await db
-                .select({ username })
+                .select({ username, email, password })
                 .from(users)
                 .execute()
             
@@ -64,7 +64,7 @@ export default class YggdrasilServer {
             const clientToken = body.clientToken || randomstring.generate(128)
             const accessToken = randomstring.generate(128);
             const issuedDate = Math.floor(Date.now() / 1000);
-            const expiryDate = issuedDate + 604800; // in 1 week
+            const expiryDate = issuedDate + 604800;
             await db
                 .insert(tokens)
                 .values({
